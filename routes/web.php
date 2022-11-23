@@ -19,5 +19,5 @@ Route::get('/', function () {
 });
 
 // Route::get('/fbs', [FirebaseController::class, 'testing'])->name('data.user.index');
-Route::get('/fbs', [FirebaseController::class, 'testing']);
+Route::get('/monitoring-data-kualitas-air-tambak', [FirebaseController::class, 'testing']);
 Route::get('/loop', [FirebaseController::class, 'loop']);
