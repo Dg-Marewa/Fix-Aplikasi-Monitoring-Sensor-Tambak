@@ -45,7 +45,7 @@
   </style>
 
     <!-- Auto Reload -->
-    <meta http-equiv="refresh" content="10" />
+    <meta http-equiv="refresh" content="5" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- Auto Reload -->
 
