@@ -14,10 +14,10 @@ use App\Http\Controllers\FirebaseController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/fbs', [FirebaseController::class, 'testing'])->name('data.user.index');
-Route::get('/monitoring-data-kualitas-air-tambak', [FirebaseController::class, 'testing']);
-Route::get('/loop', [FirebaseController::class, 'loop']);
+Route::get('/', [FirebaseController::class, 'testing']);
+// Route::get('/loop', [FirebaseController::class, 'loop']);
