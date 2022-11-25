@@ -104,6 +104,35 @@ class FirebaseController extends Controller
         ]);
     }
 
+    public function grafikData()
+    {
+        // https://medikre.com/stories/tutorial-membuat-highcharts-pada-laravel-7-atau-6
+
+        // $users = DataAirTambak::select(\DB::raw("COUNT(*) as count"))
+        //             ->whereYear('created_at', date('Y'))
+        //             ->groupBy(\DB::raw("Month(created_at)"))->get();
+        
+        $monitor  = DataAirTambak::orderBy('id','DESC')->limit(10)->get();
+        $data     = json_decode($monitor);
+        $atas     = [];
+        $bawah    = [];
+        $waktu    = [];
+
+        // Pastikan tipe data suhu atas dan bawah adalah integer atau float
+
+        foreach($data as $row){
+            $bawah[]  = $row->bawah;
+            $atas[]  = $row->atas;
+            $waktu[] = $row->waktu;
+        }      
+
+        return view('firebase.grafik',[
+            'atas' => $atas,
+            'bawah' => $bawah,
+            'waktu' => $waktu,
+        ]);
+    }
+
     public function loop()
     {
         for($x=0; $x<=10; $x++){

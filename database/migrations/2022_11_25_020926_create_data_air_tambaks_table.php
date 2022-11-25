@@ -15,8 +15,8 @@ class CreateDataAirTambaksTable extends Migration
     {
         Schema::create('data_air_tambaks', function (Blueprint $table) {
             $table->id();
-            $table->string('atas');
-            $table->string('bawah');
+            $table->float('atas');
+            $table->float('bawah');
             $table->string('ph_air');
             $table->string('tinggi');
             $table->string('do');
