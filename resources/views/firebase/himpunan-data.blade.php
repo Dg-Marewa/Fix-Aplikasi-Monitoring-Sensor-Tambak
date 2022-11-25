@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="https://kopsyahlanrisang.co.id/wp-content/uploads/2022/10/cropped-LOGO-KOPYAH-LANRISANG-EDIT.png" type="image/x-icon">
-    <title>Monitoring Kualitas Air Tambak Udang Windu</title>
+    <title>Log Data Monitoring Kualitas Air Tambak Udang Windu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
   <style>
@@ -38,10 +38,7 @@
         width: 230px;
         margin-top: 18px;
     }
-    /* .icons{
-        display: flex;
-        justify-content: center;
-    } */
+
   </style>
 
     <!-- Auto Reload -->
@@ -50,10 +47,6 @@
     <!-- Auto Reload -->
 
   <body>
-
-    <!-- <div>
-        <img style="height: 400px;" src="https://kopsyahlanrisang.co.id/wp-content/uploads/2022/10/tambak-udang-windu-lanrisang-2022.png" class="img-fluid" alt="...">
-    </div> -->
 
     <div class="icons mt-3 mb-3">
         <img class="icon-support" src="https://4.bp.blogspot.com/-3w-2E4vZoYY/UN5bPBnuE3I/AAAAAAAABII/f5-EKmw43Yg/s1600/TUT+WURI+HANDAYANI.png" alt="UMI-Logo">
@@ -66,71 +59,46 @@
         <p class="display-5 text-center p-title">Monitoring Kualitas Air Tambak <br> Udang Windu</p>
     </div>
 
-    <div class="text-center mt-5">
-        <h3>Data Kualitas Air Tambak</h3>
-    </div>
+    <!-- <div class="text-center mt-5">
+        <h3>Log Data Kualitas Air Tambak</h3>
+    </div> -->
 
-    <div class="mt-2 mb-5">
-        <div class="row d-flex justify-content-center">
-
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="text-center">Suhu Air Atas</h5>
-                    </div>
-                    <div class="card-body d-flex justify-content-center align-items-center">
-                      <p class="text-center" style="font-size: 30px; font-weight: 450;">{{$suhuA}} °C</p>
-                    </div>
-                  </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-center">Log Data Kualitas Air Tambak</h4>
             </div>
-
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="text-center">Suhu Air Bawah</h5>
-                    </div>
-                    <div class="card-body d-flex justify-content-center align-items-center">
-                      <p class="text-center" style="font-size: 30px; font-weight: 450;">{{$suhuB}} °C</p>
-                    </div>
-                  </div>
+            <div class="card-body p-4">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Waktu Pengambilan</th>
+                            <th scope="col">Suhu Air Atas</th>
+                            <th scope="col">Suhu Air Bawah</th>
+                            <th scope="col">Tinggi Air Tambak</th>
+                            <th scope="col">pH Air Tambak</th>
+                            <th scope="col">Kadar Oksigen Air</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($log as $row)
+                        <tr>
+                            <td>{{$row->id}}</td>
+                            <td>{{$row->waktu}}</td>
+                            <td>{{$row->atas}} °C</td>
+                            <td>{{$row->bawah}} °C</td>
+                            <td>{{$row->tinggi}} Cm</td>
+                            <td>{{$row->ph_air}}</td>
+                            <td>{{$row->do}} ppm</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="d-felx justify-content-center">
+                    <div class="">{{$log->links()}}</div>
+                </div>
             </div>
-
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="text-center">Tinggi Air</h5>
-                    </div>
-                    <div class="card-body d-flex justify-content-center align-items-center">
-                      <p class="text-center" style="font-size: 30px; font-weight: 450;">{{$tinggiAir}} Cm</p>
-                    </div>
-                  </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="text-center">pH Air Tambak</h5>
-                    </div>
-                    <div class="card-body d-flex justify-content-center align-items-center">
-                      <p class="text-center" style="font-size: 30px; font-weight: 450;">{{$pH}}</p>
-                    </div>
-                  </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="text-center">Kadar Oksigen Air</h5>
-                    </div>
-                    <div class="card-body d-flex justify-content-center align-items-center">
-                      <p class="text-center" style="font-size: 30px; font-weight: 450;">{{$do}} ppm</p>
-                    </div>
-                  </div>
-            </div>
-
-        </div>
-        <div class="text-center mt-3">
-          <a href="{{route('log')}}" target="_blank">Log Data</a>
         </div>
     </div>
 
@@ -140,21 +108,6 @@
 
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3980.580594518176!2d119.5362109!3d-3.8996662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d95ac222910b37d%3A0x69c0e276e85213fb!2sMasjid%20Nurul%20Bahri!5e0!3m2!1sid!2sid!4v1669214681092!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-
-      <?php
-
-      // Setting Waktu Indonesia : https://kodingkode.my.id/php-timezone-indonesia#gsc.tab=0
-
-          // App\Models\DataAirTambak::create([
-          //     'atas'         => $suhuA,
-          //     'bawah'        => $suhuB,
-          //     'ph_air'       => $pH,
-          //     'tinggi'       => $tinggiAir,
-          //     'do'           => $do,
-          //     'waktu'        => $datetime
-          // ]);
-
-      ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>

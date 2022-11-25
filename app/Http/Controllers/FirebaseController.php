@@ -8,6 +8,8 @@ use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use Kreait\Firebase\Database;
+use Carbon\Carbon;
+use App\Models\DataAirTambak;
 
 class FirebaseController extends Controller
 {
@@ -48,6 +50,7 @@ class FirebaseController extends Controller
         $pH = $database->getReference('pH')->getValue();
         $tinggiAir = $database->getReference('TinggiAir')->getValue();
         $do = $database->getReference('DO')->getValue();
+        $datetime = Carbon::now();
 
         
             // echo"<h3>Suhu Atas : $suhuA</h3>";
@@ -63,8 +66,42 @@ class FirebaseController extends Controller
             'pH' => $pH,
             'tinggiAir' => $tinggiAir,
             'do' => $do,
+            'datetime' => $datetime,
         ]);
         
+    }
+
+    public function logData()
+    {
+        $log = DataAirTambak::orderBy('id','DESC')->paginate(10);
+        return view('firebase.himpunan-data',[
+            'log' => $log,
+        ]);
+    }
+
+    public function proses()
+    {
+        $factory = (new Factory)
+        ->withServiceAccount(__DIR__.'/mf-2022-pinrang.json')
+        ->withDatabaseUri('https://coba-esp32-39fd9-default-rtdb.asia-southeast1.firebasedatabase.app');
+
+        $database = $factory->createDatabase();
+        $suhuA = $database->getReference('SuhuA')->getValue();
+        $suhuB = $database->getReference('SuhuB')->getValue();
+        $pH = $database->getReference('pH')->getValue();
+        $tinggiAir = $database->getReference('TinggiAir')->getValue();
+        $do = $database->getReference('DO')->getValue();
+
+        $datetime = Carbon::now();
+
+        return view('firebase.proses',[
+            'suhuA' => $suhuA,
+            'suhuB' => $suhuB,
+            'pH' => $pH,
+            'tinggiAir' => $tinggiAir,
+            'do' => $do,
+            'datetime' => $datetime,
+        ]);
     }
 
     public function loop()
@@ -80,5 +117,5 @@ class FirebaseController extends Controller
         //     $x--;
         // }
     }
-        
+    
 }

@@ -20,4 +20,6 @@ use App\Http\Controllers\FirebaseController;
 
 // Route::get('/fbs', [FirebaseController::class, 'testing'])->name('data.user.index');
 Route::get('/', [FirebaseController::class, 'testing']);
+Route::get('/log_data', [FirebaseController::class, 'logData'])->name('log');
+// Route::get('/proses_menyimpan_data', [FirebaseController::class, 'proses']);
 // Route::get('/loop', [FirebaseController::class, 'loop']);
