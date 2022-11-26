@@ -117,6 +117,9 @@ class FirebaseController extends Controller
         $atas     = [];
         $bawah    = [];
         $waktu    = [];
+        $tinggi    = [];
+        $ph    = [];
+        $do    = [];
 
         // Pastikan tipe data suhu atas dan bawah adalah integer atau float
 
@@ -124,12 +127,18 @@ class FirebaseController extends Controller
             $bawah[]  = $row->bawah;
             $atas[]  = $row->atas;
             $waktu[] = $row->waktu;
+            $ph[] = $row->ph_air;
+            $tinggi[] = $row->tinggi;
+            $do[] = $row->do;
         }      
 
         return view('firebase.grafik',[
             'atas' => $atas,
             'bawah' => $bawah,
             'waktu' => $waktu,
+            'tinggi' => $tinggi,
+            'ph' => $ph,
+            'do' => $do,
         ]);
     }
 

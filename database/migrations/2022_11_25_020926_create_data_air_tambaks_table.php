@@ -17,9 +17,9 @@ class CreateDataAirTambaksTable extends Migration
             $table->id();
             $table->float('atas');
             $table->float('bawah');
-            $table->string('ph_air');
-            $table->string('tinggi');
-            $table->string('do');
+            $table->float('ph_air');
+            $table->float('tinggi');
+            $table->float('do');
             $table->string('waktu')->nullable();
             $table->timestamps();
         });

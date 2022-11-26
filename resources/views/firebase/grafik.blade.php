@@ -42,8 +42,8 @@
   </style>
 
     <!-- Auto Reload -->
-    <!-- <meta http-equiv="refresh" content="1" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
+    <meta http-equiv="refresh" content="1" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- Auto Reload -->
 
   <body>
@@ -59,12 +59,20 @@
         <p class="display-5 text-center p-title">Monitoring Kualitas Air Tambak <br> Udang Windu</p>
     </div>
 
-    <!-- <div class="text-center mt-5">
-        <h3>Log Data Kualitas Air Tambak</h3>
-    </div> -->
+    <div class="container mt-5 mb-5">
+        <div class="grafik" id="data_suhu"></div>
+    </div>
 
     <div class="container mt-5 mb-5">
-        <div class="grafik" id="data"></div>
+        <div class="grafik" id="pH"></div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="grafik" id="data_tinggi"></div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="grafik" id="do"></div>
     </div>
 
     <!-- <div class="text-center mt-5 mb-4">
@@ -77,55 +85,194 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script>
-        Highcharts.chart('data', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Live Data Kualitas Suhu Air Tambak'
-    },
-    subtitle: {
-        text: 'Source: ' +
-            '<a href="http://kopsyahlanrisang.siyap.co.id/" ' +
-            'target="_blank">http://kopsyahlanrisang.siyap.co.id</a>'
-    },
-    xAxis: {
-        categories: {!!json_encode($waktu)!!},
-        crosshair: true
-    },
-    yAxis: {
-        title: {
-            useHTML: true,
-            text: 'Derajat Suhu Dalam Satuan Celcius (°C)'
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [
-        {
-        name: 'Suhu Air Atas',
-        data: {!!json_encode($atas)!!} 
-        },
-        {
-        name: 'Suhu Air Bawah',
-        data: {!!json_encode($bawah)!!} 
-        },
     
-    ]
-});
+    <script>
+        Highcharts.chart('data_suhu', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Live Data Kualitas Suhu Air Tambak'
+            },
+            subtitle: {
+                text: 'Source: ' +
+                    '<a href="http://kopsyahlanrisang.siyap.co.id/" ' +
+                    'target="_blank">http://kopsyahlanrisang.siyap.co.id</a>'
+            },
+            xAxis: {
+                categories: {!!json_encode($waktu)!!},
+                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    useHTML: true,
+                    text: 'Derajat Suhu Dalam Satuan Celcius (°C)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [
+                {
+                name: 'Suhu Air Atas',
+                data: {!!json_encode($atas)!!} 
+                },
+                {
+                name: 'Suhu Air Bawah',
+                data: {!!json_encode($bawah)!!} 
+                },
+            
+            ]
+        });
+    </script>
+
+    <script>
+        Highcharts.chart('pH', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Live Data Kualitas pH Air Tambak'
+            },
+            subtitle: {
+                text: 'Source: ' +
+                    '<a href="http://kopsyahlanrisang.siyap.co.id/" ' +
+                    'target="_blank">http://kopsyahlanrisang.siyap.co.id</a>'
+            },
+            xAxis: {
+                categories: {!!json_encode($waktu)!!},
+                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    useHTML: true,
+                    text: 'Kualitas pH Air Tambak'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [
+                {
+                name: 'pH Air Tambak',
+                data: {!!json_encode($ph)!!} 
+                }            
+            ]
+        });
+    </script>
+
+    <script>
+        Highcharts.chart('do', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Live Data Kualitas Kadar Oksigen Air Tambak'
+            },
+            subtitle: {
+                text: 'Source: ' +
+                    '<a href="http://kopsyahlanrisang.siyap.co.id/" ' +
+                    'target="_blank">http://kopsyahlanrisang.siyap.co.id</a>'
+            },
+            xAxis: {
+                categories: {!!json_encode($waktu)!!},
+                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    useHTML: true,
+                    text: 'Kadar Oksigen Air Tambak Dalam Satuan (ppm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [
+                {
+                name: 'Kadar Oksigen Air Tambak',
+                data: {!!json_encode($do)!!} 
+                }            
+            ]
+        });
+    </script>
+
+    <script>
+        Highcharts.chart('data_tinggi', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Live Data Ketinggian Air Tambak'
+            },
+            subtitle: {
+                text: 'Source: ' +
+                    '<a href="http://kopsyahlanrisang.siyap.co.id/" ' +
+                    'target="_blank">http://kopsyahlanrisang.siyap.co.id</a>'
+            },
+            xAxis: {
+                categories: {!!json_encode($waktu)!!},
+                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    useHTML: true,
+                    text: 'Ketinggian Air Tambak Dalam Satuan Centimeter (Cm)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [
+                {
+                name: 'Ketinggian Air Tambak',
+                data: {!!json_encode($tinggi)!!} 
+                }            
+            ]
+        });
     </script>
 
     </body>

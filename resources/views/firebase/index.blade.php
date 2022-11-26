@@ -131,7 +131,7 @@
 
         </div>
         <div class="text-center mt-3">
-          <a href="{{route('log')}}" target="_blank">Log Data</a>
+          <a href="{{route('log')}}" target="_blank">Log Data</a> | <a href="{{route('grafik')}}" target="_blank">Grafik Data</a>
         </div>
     </div>
 
